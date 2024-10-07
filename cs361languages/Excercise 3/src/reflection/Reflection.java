@@ -5,7 +5,7 @@ package reflection;
 
 /**
  * @author ADD YOUR NAME 
- *
+ * Joel Avendano
  */
 
 // Reflection: https://docs.oracle.com/javase/tutorial/reflect/class/
@@ -18,6 +18,8 @@ package reflection;
 // Complete the code
 
 import java.lang.reflect.Method;
+
+import circle.ColoredCircle;
 
 public class Reflection {
 
@@ -46,6 +48,17 @@ public class Reflection {
 		// TODO To complete
 		// You need to use the EXACT format of the output
 		// Hint: Use the method getSuperClass()
+		Class<?> clazz = o.getClass();
+		StringBuilder inheritanceChain = new StringBuilder("Inheritance chain:\n");
+		while (clazz != null) {
+			inheritanceChain.append(clazz.getName());
+			clazz = clazz.getSuperclass();
+			if (clazz != null) {
+				inheritanceChain.append(" inherits from ");
+			}
+		}
+
+		System.out.println(inheritanceChain);
 	}
 	
 	/**
@@ -62,6 +75,18 @@ public class Reflection {
 		// TODO To complete
 		// Print each method on one line
 		// Use this EXACT format
+		for(Method method : m){
+			StringBuilder methodSignature = new StringBuilder();
+			methodSignature.append(method.getName()).append(": ");
+			Class<?>[] parameterTypes = method.getParameterTypes();
+			for(int i = 0; i < parameterTypes.length; i++){
+				if(i < parameterTypes.length - 1){
+					methodSignature.append(" ");
+				}
+			}
+			methodSignature.append(" -> ").append(method.getReturnType().getSimpleName());
+			System.out.println(methodSignature.toString());
+		}
 		System.out.println("\n");
 	}
 
@@ -81,9 +106,19 @@ public class Reflection {
 		
 		// Demonstration of the methods on an objet of type String
 		// TODO To complete
+		String str = "Hello, Reflection!";
+		System.out.println("Demonstrating on String object:");
+		r.correspondingClass(str);
+		r.inheritanceChain(str);
+		r.listMethods(str);
 		
 		// Demonstration of the methods on an objet of type ColoredCircle
 		// TODO To complete		
+		ColoredCircle circle = new ColoredCircle(); 
+		System.out.println("\nDemonstrating on ColoredCircle object:");
+		r.correspondingClass(circle);
+		r.inheritanceChain(circle);
+		r.listMethods(circle);
 	}
 
 }

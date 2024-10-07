@@ -5,7 +5,7 @@ package employee;
 
 /**
  * @author ADD YOUR NAME
- *
+ * Joel Avendano
  */
 
 // Resource: https://www.baeldung.com/java-type-casting
@@ -32,25 +32,29 @@ public class DemoEmployee {
 		System.out.println("emp3");
 		emp3.whoAmI();
 		// TODO To complete
-		// emp3.whoAmI() // prints ... because ...
-		// emp3.getHourlyRate(); // returns syntax error because ...
+		// emp3.whoAmI() // prints "PART TIME EMPLOYEE" because even though emp3 is treated 
+		// as an Employee, the whoAmI() method is overridden in the PartTimeEmployee class. 
+		// At runtime, Java calls the overridden method.
+
+		// emp3.getHourlyRate(); // returns syntax error because getHourlyRate() is a method of
+		// PartTimeEmployee, and emp3 is treated as an Employee, which does not have this method.
 
 		// TODO To complete
 		// Add the condition that test that emp3 is an instance of part time employee at
 		// this time
-		// if (CONDITION) {
-		// System.out.println("emp3 instance of part time employee"); // printed
-		// } else {
-		System.out.println("emp3 not instance of part time employee");
-		// }
+		// if (emp3 instanceof PartTimeEmployee) {
+            // System.out.println("emp3 instance of part time employee"); 
+        // } else {
+            // System.out.println("emp3 not instance of part time employee");
+        // }
 
 		// Downcasting 1
 		// TODO Uncomment and run the code
 		// PartTimeEmployee pEmp3 = (PartTimeEmployee) emp1;
 		// TODO To complete
-		// This instruction compiles / does not compile
+		// This instruction compiles
 		// This instruction returns a ClassCastException at run time
-		// because ...
+		// because emp1 is an instance of Employee, not PartTimeEmployee
 
 		// Downcasting 2
 		// Requires the use of intanceof to avoid a run time cast exception

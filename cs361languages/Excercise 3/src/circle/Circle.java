@@ -5,7 +5,7 @@ package circle;
 
 /**
  * @author ADD YOUR NAME
- *
+ * Joel Avendano
  */
 
 // TODO Complete the code
@@ -24,6 +24,12 @@ public class Circle extends GraphicObject {
 	}
 
 	// overloaded method in Circle
+	public Circle(double centerX, double centerY, double radius) {
+		this.centerX = centerX;
+		this.centerY = centerY;
+		this.radius = radius;
+	}
+
 	// overridden method from GraphicObject
 	@Override
 	void draw() {
@@ -60,8 +66,9 @@ public class Circle extends GraphicObject {
 	 */
 	@Override
 	public String toString() {
-		return super.toString();
+		return "Circle: centerX = " + centerX + ", centerY = " + centerY + ", radius = " + radius;
 	}
+	
 
 	// TODO To complete
 	// TODO Be sure that you understand the difference between equals and ==
@@ -71,7 +78,16 @@ public class Circle extends GraphicObject {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		return super.equals(obj);
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		Circle other = (Circle) obj;
+		return Double.compare(other.centerX, centerX) == 0 &&
+			   Double.compare(other.centerY, centerY) == 0 &&
+			   Double.compare(other.radius, radius) == 0;
 	}
 
 	// TODO To complete
@@ -82,5 +98,9 @@ public class Circle extends GraphicObject {
 	// protected Object clone() throws CloneNotSupportedException {
 	// return super.clone();
 	// }
+	@Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new Circle(centerX, centerY, radius);
+    }
 
 }
